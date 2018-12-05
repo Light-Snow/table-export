@@ -14,10 +14,12 @@
 ### 3、在程序中加入以下两个方法
 ```
 tableExport(bookType) {
+  this.downloadLoading = true
   import('@/vendor/Export2Excel').then(excel => {
     const tHeader = ['timestamp', 'title', 'type', 'importance', 'status'] // 表头
     const filterVal = ['timestamp', 'title', 'type', 'importance', 'status'] // 表头对应字段名
-    const data = this.formatJson(filterVal, this.list)
+    const list = this.list // 数据来源
+    const data = this.formatJson(filterVal, list) //对导出数据格式化处理
     excel.export_json_to_excel({
       header: tHeader,
       data,
