@@ -4,7 +4,7 @@
 ```
  npm install -S file-saver xlsx
  
- npm install -D script-loader
+ npm install script-loader -S -D
 ```
 
 ### 2、在文件夹中加入Export2Excel.js文件
@@ -12,6 +12,7 @@
     
     
 ### 3、在程序中加入以下两个方法
+由于js-xlsx体积还是很大的，导出功能也不是一个非常常用的功能，所以使用的时候建议使用懒加载。例如下面的import('@/vendor/Export2Excel')
 ```
 tableExport(bookType) {
   this.downloadLoading = true
@@ -21,10 +22,11 @@ tableExport(bookType) {
     const list = this.list // 数据来源
     const data = this.formatJson(filterVal, list) //对导出数据格式化处理
     excel.export_json_to_excel({
-      header: tHeader,
-      data,
-      filename: 'table-list', // 可自定义文件名
-      bookType
+      header: tHeader, //表头 必填
+      data, //具体数据 必填
+      filename: 'table-list', // 可自定义文件名，非必填
+      autoWidth: true, //是否自适应宽度，非必填，默认true
+      bookType //导出类型xlsx、csv、txt，非必填，默认xlsx
     })
     this.downloadLoading = false
   })
