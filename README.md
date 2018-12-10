@@ -41,6 +41,17 @@ formatJson(filterVal, jsonData) {
   }))
 }
 ```
+#### 参数
+
+| 参数 |说明|类型|可选值|默认值|
+| -------- | -----| :-----:| ----- | :----: |
+| header | 导出数据的表头|Array| / | [] |
+| data | 导出的具体数据|Array| / | [] |
+| filename | 导出文件名|String| / | excel-list |
+| autoWidth | 单元格是否要自适应宽度|Boolean| true / false | true |
+| bookType | 导出文件类型|String| xlsx, csv, txt等 | xlsx |
+
+
 ### 4、支持两种导出方式
 ```
 <el-button :loading="downloadLoading" type="primary" icon="el-icon-download" @click="exportExcel('xlsx')">导出</el-button>
